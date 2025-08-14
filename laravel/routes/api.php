@@ -35,7 +35,7 @@ Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
 // Protected routes (require authentication)
-Route::middleware('api.auth')->group(function () {
+Route::middleware('api.token')->group(function () {
     // User profile
     Route::get('/auth/me', [AuthController::class, 'me']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
