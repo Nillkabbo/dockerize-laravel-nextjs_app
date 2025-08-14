@@ -11,21 +11,35 @@ interface User {
 }
 
 export default function Home() {
-  const { user } = useAuth()
+  const { user, token } = useAuth()
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     fetchUsers()
-  }, [])
+  }, [user, token])
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/users`)
+      const headers: HeadersInit = {
+        'Accept': 'application/json',
+      }
+      
+      // Add authentication header if user is logged in
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`
+      }
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/users`, {
+        headers
+      })
+      
       if (response.ok) {
         const data = await response.json()
         setUsers(data.data || [])
+      } else if (response.status === 401) {
+        setError('Authentication required to view users')
       } else {
         setError('Failed to fetch users')
       }
@@ -134,7 +148,24 @@ export default function Home() {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">👥 Users from Laravel API</h2>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-2xl font-semibold text-gray-800">👥 Users from Laravel API</h2>
+                <p className="text-gray-600 mt-1">
+                  {user ? 'Showing all users with your status highlighted' : 'Public access - login to see full user data'}
+                </p>
+              </div>
+              <button
+                onClick={fetchUsers}
+                disabled={loading}
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Refresh
+              </button>
+            </div>
             {loading && (
               <div className="text-center py-8">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
@@ -163,17 +194,23 @@ export default function Home() {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {users.map((user) => (
-                      <tr key={user.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.email}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                          {new Date(user.created_at).toLocaleDateString()}
+                    {users.map((userItem) => (
+                      <tr key={userItem.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{userItem.id}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{userItem.name}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{userItem.email}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            user && userItem.id === user.id 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-blue-100 text-blue-800'
+                          }`}>
+                            {user && userItem.id === user.id ? 'Active' : 'Registered'}
+                          </span>
                         </td>
                       </tr>
                     ))}
