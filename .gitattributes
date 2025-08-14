@@ -1,0 +1,121 @@
+# 🚀 Git Attributes File
+# Ensures consistent file handling across different operating systems
+
+# ========================================
+# 📝 Text Files (Normalize line endings)
+# ========================================
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.php text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.sql text eol=lf
+*.env* text eol=lf
+*.gitignore text eol=lf
+*.dockerignore text eol=lf
+
+# ========================================
+# 🔧 Scripts (Ensure executable)
+# ========================================
+*.sh text eol=lf executable
+*.bash text eol=lf executable
+
+# ========================================
+# 🐳 Docker Files
+# ========================================
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
+.dockerignore text eol=lf
+
+# ========================================
+# 📦 Package Files
+# ========================================
+package.json text eol=lf
+composer.json text eol=lf
+*.lock text eol=lf
+
+# ========================================
+# 🎯 Configuration Files
+# ========================================
+*.config.js text eol=lf
+*.config.ts text eol=lf
+*.config.json text eol=lf
+tsconfig.json text eol=lf
+next.config.js text eol=lf
+tailwind.config.js text eol=lf
+postcss.config.js text eol=lf
+
+# ========================================
+# 🖼️ Binary Files (No line ending conversion)
+# ========================================
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.7z binary
+*.rar binary
+
+# ========================================
+# 🔐 Security Files
+# ========================================
+*.pem binary
+*.key binary
+*.crt binary
+*.csr binary
+*.p12 binary
+*.pfx binary
+
+# ========================================
+# 📊 Data Files
+# ========================================
+*.sqlite binary
+*.sqlite3 binary
+*.db binary
+*.dump binary
+
+# ========================================
+# 🎵 Media Files
+# ========================================
+*.mp3 binary
+*.mp4 binary
+*.avi binary
+*.mov binary
+*.wav binary
+*.flac binary
+
+# ========================================
+# 📚 Documentation
+# ========================================
+docs/**/*.md text eol=lf
+scripts/**/*.md text eol=lf
+
+# ========================================
+# 🚨 Important Notes
+# ========================================
+# This file ensures:
+# ✅ Consistent line endings across platforms
+# ✅ Proper handling of binary files
+# ✅ Executable permissions for scripts
+# ✅ Cross-platform compatibility
+
+# Line ending rules:
+# - Unix/Linux/macOS: LF (\n)
+# - Windows: CRLF (\r\n)
+# - Git will automatically convert based on platform

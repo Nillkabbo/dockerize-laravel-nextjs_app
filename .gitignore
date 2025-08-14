@@ -1,0 +1,347 @@
+# 🚀 Laravel + Next.js + MySQL Full Stack Project
+# Comprehensive .gitignore file
+
+# ========================================
+# 🐳 Docker & Environment Files
+# ========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Docker volumes and data
+db_data/
+mysql_data/
+*.sql
+!mysql/init/*.sql
+
+# Docker Compose override files
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+
+# ========================================
+# 🔧 Laravel Backend
+# ========================================
+laravel/.env
+laravel/.env.*
+laravel/vendor/
+laravel/node_modules/
+laravel/npm-debug.log*
+laravel/yarn-debug.log*
+laravel/yarn-error.log*
+laravel/.npm
+laravel/.eslintcache
+
+# Laravel storage and cache
+laravel/storage/*.key
+laravel/storage/logs/*.log
+laravel/storage/framework/cache/*
+laravel/storage/framework/sessions/*
+laravel/storage/framework/views/*
+laravel/storage/app/public/*
+laravel/bootstrap/cache/*
+
+# Laravel testing
+laravel/phpunit.xml
+laravel/tests/coverage/
+laravel/.phpunit.result.cache
+
+# ========================================
+# ⚡ Next.js Frontend
+# ========================================
+next/.env
+next/.env.*
+next/node_modules/
+next/.next/
+next/out/
+next/build/
+next/dist/
+next/.vercel
+next/.swc/
+
+# Next.js logs
+next/npm-debug.log*
+next/yarn-debug.log*
+next/yarn-error.log*
+next/.npm
+next/.eslintcache
+
+# Next.js testing
+next/coverage/
+next/.nyc_output
+next/.jest/
+
+# ========================================
+# 🗄️ Database & MySQL
+# ========================================
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# MySQL data directories
+mysql/data/
+mysql/logs/
+mysql/tmp/
+
+# Database dumps
+*.dump
+*.sql.gz
+*.sql.bak
+
+# ========================================
+# 🐍 Python (if any Python tools)
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ========================================
+# 🦀 Rust (if any Rust tools)
+# ========================================
+target/
+Cargo.lock
+*.rs.bk
+
+# ========================================
+# 🐳 Docker Build Artifacts
+# ========================================
+.dockerignore
+Dockerfile.*
+!Dockerfile
+!laravel/Dockerfile
+!next/Dockerfile
+
+# Docker images
+*.tar
+*.tar.gz
+*.tar.bz2
+
+# ========================================
+# 🖥️ Operating System Files
+# ========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ========================================
+# 🔐 Security & Secrets
+# ========================================
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.pwd
+secrets/
+.secrets
+.secret
+
+# SSH keys
+id_rsa
+id_rsa.pub
+*.ppk
+
+# ========================================
+# 📱 Mobile & IDE Files
+# ========================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ========================================
+# 📦 Package Managers
+# ========================================
+# npm
+.npm
+.eslintcache
+.node_repl_history
+.yarn-integrity
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Composer
+composer.phar
+composer.lock
+
+# ========================================
+# 🧪 Testing & Coverage
+# ========================================
+coverage/
+.nyc_output
+.jest/
+.phpunit.result.cache
+test-results/
+playwright-report/
+test-results.xml
+
+# ========================================
+# 📊 Logs & Debugging
+# ========================================
+*.log
+*.log.*
+logs/
+debug/
+*.debug
+
+# ========================================
+# 🚀 Deployment & CI/CD
+# ========================================
+.deploy/
+dist/
+build/
+.vercel
+.netlify
+.cache/
+.parcel-cache/
+
+# ========================================
+# 🔍 Search & Index Files
+# ========================================
+.search-index/
+.algolia/
+*.index
+
+# ========================================
+# 📁 Temporary & Cache Files
+# ========================================
+tmp/
+temp/
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# ========================================
+# 🎯 Project-Specific
+# ========================================
+# Keep these files
+!README.md
+!docs/
+!scripts/
+!mysql/init/
+!docker-compose.yml
+!laravel/Dockerfile
+!next/Dockerfile
+
+# ========================================
+# 📝 Documentation (keep these)
+# ========================================
+# All markdown files in docs/ are tracked
+docs/*.md
+scripts/*.md
+
+# ========================================
+# 🚨 Important Notes
+# ========================================
+# This .gitignore ensures:
+# ✅ Source code is tracked
+# ✅ Documentation is tracked
+# ✅ Scripts are tracked
+# ✅ Configuration files are tracked
+# ❌ Sensitive data is NOT tracked
+# ❌ Build artifacts are NOT tracked
+# ❌ Dependencies are NOT tracked
+# ❌ Logs are NOT tracked
+# ❌ Cache files are NOT tracked
+
+# ========================================
+# 🔄 To Force Add Ignored Files (if needed)
+# ========================================
+# git add -f filename
+# git add -f directory/
