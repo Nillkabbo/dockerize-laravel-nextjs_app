@@ -7,7 +7,9 @@ Next.js 14 frontend application with React 18, TypeScript, and Tailwind CSS.
 - **Status**: 100% Complete
 - **Last Updated**: August 14, 2025
 - **Developer**: AI Agent
-- **Recent Fixes**: [Authentication Flow Issues Resolved](authentication-fixes.md)
+- **Recent Fixes**: 
+  - [Authentication Flow Issues Resolved](authentication-fixes.md)
+  - [Users List Integration](users-list-integration.md)
 
 ## 🏗️ **Frontend Architecture**
 
@@ -51,18 +53,33 @@ next/
 - **File**: `next/pages/index.tsx`
 - **Purpose**: Display user list from Laravel API with authentication status
 - **Features**:
-  - User data fetching from API
+  - User data fetching from API (with authentication when logged in)
   - Authentication status display
   - Quick action buttons (login/register or dashboard)
   - Loading states
   - Error handling
   - Responsive table design
   - Link to phpMyAdmin
+  - **NEW**: Refresh button for users list
+  - **NEW**: Authentication-aware API calls
 
 ### **Authentication Pages**
 - **Login Page** (`/login`) - Modern login form with validation
 - **Register Page** (`/register`) - User registration with password confirmation
-- **Welcome Dashboard** (`/welcome`) - Protected user dashboard with stats
+- **Welcome Dashboard** (`/welcome`) - Protected user dashboard with stats and users list
+
+### **Welcome Page (`/welcome`)**
+- **File**: `next/pages/welcome.tsx`
+- **Purpose**: Protected dashboard with user stats and complete users list
+- **Features**:
+  - User profile information display
+  - System statistics from API
+  - **NEW**: Complete users list from Laravel API
+  - **NEW**: Refresh button for real-time updates
+  - **NEW**: Status indicators (Active/Registered)
+  - **NEW**: Authentication token integration
+  - Quick action buttons (Home, API Docs, Database)
+  - Authentication status display
 
 ### **Authentication Components**
 - **AuthContext** - Global authentication state management

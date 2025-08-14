@@ -201,6 +201,7 @@ curl -X GET "http://localhost:8000/api/auth/me" \
 - ✅ **Protected Routes**: Proper authentication guards with loading states
 - ✅ **Null Safety**: User data safely handled with proper fallbacks
 - ✅ **State Management**: Centralized authentication state via AuthContext
+- ✅ **Users List Display**: Working on both home and welcome pages with authentication
 
 ### **Short Term:**
 - **Frontend Integration**: ✅ Complete - Authentication system fully integrated
@@ -227,23 +228,23 @@ curl -X GET "http://localhost:8000/api/auth/me" \
 10. **✅ Authentication Flow**: Fixed login redirection and protected routes
 11. **✅ State Management**: Centralized AuthContext with proper loading states
 12. **✅ Error Handling**: Null safety and proper error boundaries implemented
+13. **✅ Users List Integration**: Real-time user data display on both home and welcome pages
 
 ## 📝 **Recent Commits**
 
-### **Latest Commit (b044ca0):**
+### **Latest Commit (9b78ed4):**
 ```
-🔧 Fix authentication flow and frontend routing issues
+🔧 Add users list section to welcome page with API integration
 
-✅ Fixed Laravel container vendor directory mounting issue
-✅ Updated Tailwind CSS configuration for v4 compatibility
-✅ Implemented proper AuthContext usage across all pages
-✅ Fixed login/register redirection to welcome page
-✅ Add null safety checks for user data
-✅ Fix ProtectedRoute component loading states
-✅ Remove setTimeout delays for immediate redirection
-✅ Update PostCSS configuration for Tailwind CSS v4
-✅ Simplify Tailwind config for better compatibility
-✅ Ensure proper authentication state management
+✅ Add '👥 Users from Laravel API' section to welcome page
+✅ Implement fetchUsers function using authentication token
+✅ Display real user data from Laravel API instead of hardcoded data
+✅ Add refresh button for manual user list updates
+✅ Show current user as 'Active' and others as 'Registered'
+✅ Integrate with existing loading states and error handling
+✅ Update home page users section with authentication support
+✅ Add refresh functionality to both home and welcome pages
+✅ Implement proper error handling for authenticated/unauthenticated states
 ```
 
 ### **Previous Commit (c2381cf):**
@@ -276,5 +277,5 @@ curl -X GET "http://localhost:8000/api/auth/me" \
 ---
 
 **Last Updated**: August 14, 2025  
-**Status**: 100% Complete - All Core Features + Frontend Auth + Authentication Flow Working  
+**Status**: 100% Complete - All Core Features + Frontend Auth + Authentication Flow + Users List Working  
 **Next Milestone**: User Profile Management & Advanced Features
