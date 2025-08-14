@@ -1,8 +1,22 @@
 # 🚀 Laravel + Next.js + MySQL Full Stack Starter
 
+> **🔗 Repository**: [https://github.com/Nillkabbo/dockerize-laravel-nextjs_app](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app)
+
 > **🎯 LOST? CONFUSED?** Start with **[docs/START_HERE.md](docs/START_HERE.md)** - Your navigation guide to all documentation!
+> 
+> **🌐 GitHub Viewers**: Use **[docs/START_HERE.md](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/START_HERE.md)** for proper navigation on GitHub!
 
 **📁 Clean Project Structure**: All documentation is organized in the `docs/` folder for easy navigation!
+
+## 🌐 **GitHub Navigation**
+
+> **📱 Viewing on GitHub?** Use these direct links for proper navigation:
+
+- **🚀 [START_HERE.md](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/START_HERE.md)** - Begin here!
+- **📚 [Documentation Index](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/INDEX.md)** - All docs overview
+- **🔧 [Setup Guide](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/SETUP_GUIDE.md)** - Detailed setup
+- **⚡ [Quick Reference](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/QUICK_REFERENCE.md)** - Common commands
+- **🚨 [Troubleshooting](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/TROUBLESHOOTING.md)** - Fix common issues
 
 A complete, production-ready full-stack development environment featuring Laravel API, Next.js frontend, MySQL database, and phpMyAdmin - all containerized with Docker.
 
@@ -42,7 +56,7 @@ scripts\after_setup.bat              # Windows
 
 **That's it!** Your full-stack application will be ready in minutes! 🎉
 
-📖 **For detailed setup instructions, see [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)**
+📖 **For detailed setup instructions, see [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** ([GitHub](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/SETUP_GUIDE.md))
 
 ## 🌐 Access Points
 
@@ -166,7 +180,7 @@ docker-compose up --build -d
 
 ## 🚨 Troubleshooting
 
-For common issues and solutions, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
+For common issues and solutions, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) ([GitHub](https://github.com/Nillkabbo/dockerize-laravel-nextjs_app/blob/main/docs/TROUBLESHOOTING.md))
 
 Quick fixes:
 ```bash
