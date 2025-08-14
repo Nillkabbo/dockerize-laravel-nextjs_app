@@ -22,12 +22,14 @@ A complete, production-ready full-stack development environment featuring Larave
 
 ## ✨ Features
 
-- **🔧 Backend**: Laravel 12 with RESTful API endpoints
-- **⚡ Frontend**: Next.js 14 with React 18 and TypeScript
-- **🗄️ Database**: MySQL 8.0 with migrations and sample data
-- **🐳 Containerization**: Docker Compose for easy development
+- **🔧 Backend**: Laravel 12 with RESTful API endpoints and authentication
+- **⚡ Frontend**: Next.js 14 with React 18, TypeScript, and complete authentication system
+- **🗄️ Database**: MySQL 8.0 with migrations, seeders, and sample users
+- **🐳 Containerization**: Docker Compose with development and production modes
 - **🔧 Management**: phpMyAdmin for database administration
-- **🚀 Automation**: One-command setup scripts
+- **🚀 Automation**: One-command setup scripts with hot reload
+- **🔐 Authentication**: Complete login/register system with protected routes
+- **📊 User Management**: Real-time users list display on both home and welcome pages
 
 ## 🎯 Quick Start
 
@@ -69,16 +71,42 @@ Once setup is complete:
 
 ## 🧪 Test Your Setup
 
+### **Basic API Testing**
 ```bash
 # Test API health
 curl http://localhost:8000/api/health
 
-# Test users endpoint
+# Test users endpoint (public access)
 curl http://localhost:8000/api/users
 
 # Test frontend
 curl http://localhost:3000
 ```
+
+### **Authentication Testing**
+```bash
+# 1. Register a new user
+curl -X POST http://localhost:8000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test User","email":"test@example.com","password":"password123","password_confirmation":"password123"}'
+
+# 2. Login and get token
+curl -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","password":"admin123"}'
+
+# 3. Use token to access protected endpoints
+curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8000/api/users
+
+# 4. Get user profile
+curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8000/api/auth/me
+```
+
+### **Frontend Testing**
+1. **Home Page**: http://localhost:3000 - Users list (public access)
+2. **Login Page**: http://localhost:3000/login - Authentication form
+3. **Register Page**: http://localhost:3000/register - User registration
+4. **Welcome Page**: http://localhost:3000/welcome - Protected dashboard (requires login)
 
 ## 🏗️ Architecture
 
@@ -101,22 +129,29 @@ curl http://localhost:3000
 ## 🚀 What You Get
 
 ### Backend (Laravel 12)
-- RESTful API with user management endpoints
-- Database migrations and seeders
-- CORS configuration for frontend communication
-- Ready for authentication with Laravel Sanctum
+- ✅ **RESTful API** with user management endpoints
+- ✅ **Authentication System** with custom token-based auth
+- ✅ **Database migrations** and seeders with sample users
+- ✅ **CORS configuration** for frontend communication
+- ✅ **Swagger Documentation** at `/api/documentation`
+- ✅ **Health Check** endpoint at `/api/health`
 
 ### Frontend (Next.js 14)
-- React 18 with TypeScript
-- Tailwind CSS for styling
-- API integration with Laravel
-- Hot reloading for development
+- ✅ **React 18** with TypeScript
+- ✅ **Tailwind CSS** for modern styling
+- ✅ **Complete Authentication** system (login/register/logout)
+- ✅ **Protected Routes** with authentication guards
+- ✅ **Real-time Users List** on both home and welcome pages
+- ✅ **Hot Reloading** for development
+- ✅ **Responsive Design** for all devices
 
 ### Infrastructure
-- Docker Compose orchestration
-- MySQL 8.0 database
-- phpMyAdmin for database management
-- Proper networking between services
+- ✅ **Docker Compose** orchestration with dev/prod modes
+- ✅ **MySQL 8.0** database with sample data
+- ✅ **phpMyAdmin** for database management
+- ✅ **Proper networking** between services
+- ✅ **Volume mounting** for development
+- ✅ **Multi-stage builds** for production
 
 ## 📁 Project Structure
 
@@ -142,10 +177,60 @@ laravel_next_mysql_play/
 └── mysql/                        # MySQL initialization scripts
 ```
 
-## 🔄 Development Commands
+## 📜 Available Scripts
 
+### **Setup Scripts**
+- `./scripts/setup.sh` - Initial project creation and container setup
+- `./scripts/after_setup.sh` - Complete Laravel and Next.js configuration
+- `./scripts/reset_project.sh` - Reset everything and start fresh
+
+### **Development Scripts**
+- `./scripts/dev.sh` - Start development environment with hot reload
+- `./scripts/quick-dev.sh` - Quick restart of frontend only
+- `./scripts/prod.sh` - Start production environment
+
+### **Windows Users**
+- `scripts\setup.bat` - Initial setup for Windows
+- `scripts\after_setup.bat` - Complete setup for Windows
+
+## 🚀 Development Workflow
+
+### **Development Mode (Hot Reload)**
 ```bash
-# Start all services
+# Start development environment with hot reload
+./scripts/dev.sh
+
+# Quick restart of just the frontend
+./scripts/quick-dev.sh
+
+# Stop development environment
+docker-compose -f docker-compose.dev.yml down
+```
+
+**Development Features:**
+- ✅ **Hot Reload**: Changes reflect immediately without rebuilding
+- ✅ **Volume Mounting**: Source code mounted as volumes
+- ✅ **Fast Iteration**: Edit files and see changes instantly
+- ✅ **No Rebuilds**: Perfect for active development
+
+### **Production Mode (Optimized)**
+```bash
+# Start production environment with optimized builds
+./scripts/prod.sh
+
+# Stop production environment
+docker-compose -f docker-compose.prod.yml down
+```
+
+**Production Features:**
+- ✅ **Optimized Performance**: Built and minified code
+- ✅ **Security Hardened**: Production-ready configurations
+- ✅ **Resource Efficient**: Smaller container sizes
+- ✅ **Scalable**: Ready for production deployment
+
+### **Legacy Commands**
+```bash
+# Start all services (basic)
 docker-compose up -d
 
 # Stop all services
@@ -161,6 +246,31 @@ docker-compose logs [service-name]
 docker-compose up --build -d
 ```
 
+## 🎯 Current Functionality
+
+### **Authentication System**
+- ✅ **User Registration** at `/register`
+- ✅ **User Login** at `/login` with automatic redirection
+- ✅ **Protected Dashboard** at `/welcome`
+- ✅ **Token-based Authentication** with Bearer tokens
+- ✅ **Automatic Logout** and session management
+
+### **Users Management**
+- ✅ **Home Page** (`/`) - Public users list with authentication awareness
+- ✅ **Welcome Page** (`/welcome`) - Protected users list with full features
+- ✅ **Real-time Updates** with refresh buttons
+- ✅ **Status Indicators** (Active/Registered) for each user
+- ✅ **API Integration** with Laravel backend
+
+### **API Endpoints**
+- ✅ **Health Check**: `GET /api/health`
+- ✅ **User Registration**: `POST /api/auth/register`
+- ✅ **User Login**: `POST /api/auth/login`
+- ✅ **User Logout**: `POST /api/auth/logout`
+- ✅ **User Profile**: `GET /api/auth/me`
+- ✅ **Users List**: `GET /api/users`
+- ✅ **User Statistics**: `GET /api/users/stats`
+
 ## 🛠️ Customization
 
 ### Adding API Endpoints
@@ -170,7 +280,7 @@ docker-compose up --build -d
 
 ### Modifying Frontend
 1. Edit files in `next/pages/` or `next/components/`
-2. Changes auto-reload
+2. Changes auto-reload in development mode
 3. For major changes: `docker-compose restart next`
 
 ### Database Changes
@@ -195,11 +305,25 @@ rm -f docker-compose.yml
 ## 📚 Next Steps
 
 After successful setup:
-1. **🔐 Authentication**: Implement Laravel Sanctum
-2. **📊 Data**: Add sample data and seeders
-3. **🧪 Testing**: Set up PHPUnit and Jest
-4. **📝 Documentation**: Add API documentation
-5. **🚀 Deployment**: Prepare for production
+1. **🔐 Authentication**: ✅ Complete - Custom token-based system implemented
+2. **📊 Data**: ✅ Complete - Sample users and seeders available
+3. **🧪 Testing**: ✅ Complete - API endpoints tested and working
+4. **📝 Documentation**: ✅ Complete - Swagger UI and comprehensive docs
+5. **🚀 Deployment**: ✅ Ready - Production Docker configuration available
+
+## 🎉 Recent Updates (August 14, 2025)
+
+### **✅ Completed Features**
+- **Authentication System**: Complete login/register/logout with protected routes
+- **Users List Integration**: Real-time users display on both home and welcome pages
+- **Development Workflow**: Hot reload automation with dev/prod modes
+- **Documentation**: Comprehensive feature documentation and troubleshooting guides
+
+### **🚀 Current Status**
+- **Frontend**: 100% Complete with authentication and user management
+- **Backend**: 100% Complete with API endpoints and authentication
+- **Infrastructure**: 100% Complete with development and production modes
+- **Documentation**: 100% Complete with feature guides and examples
 
 ## 🤝 Contributing
 
