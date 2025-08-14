@@ -46,6 +46,15 @@ if errorlevel 1 (
 )
 echo ✅ Database migrations completed successfully
 
+REM Run database seeders to populate with sample data
+echo 🌱 Running database seeders...
+docker-compose exec -T laravel php artisan db:seed --force
+if errorlevel 1 (
+    echo ❌ Database seeders failed
+    exit /b 1
+)
+echo ✅ Database seeders completed successfully
+
 REM Clear Laravel caches AFTER migrations (when tables exist)
 echo 🧹 Clearing Laravel caches...
 docker-compose exec -T laravel php artisan config:clear
@@ -125,6 +134,12 @@ echo • Test Frontend:      curl http://localhost:3000
 echo • View Laravel Logs:  docker-compose logs laravel
 echo • View Next.js Logs:  docker-compose logs next
 echo • View MySQL Logs:    docker-compose logs db
+echo.
+echo 👤 Sample Users Created:
+echo =========================
+echo • Admin User: admin@example.com / admin123
+echo • Test User:  test@example.com / password
+echo • +5 Random Users (via factory)
 echo.
 echo 🚀 Your full-stack application is now ready!
 echo Happy coding! 🎯
