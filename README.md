@@ -337,6 +337,24 @@ After successful setup:
 
 This project is open-sourced software licensed under the [MIT license](LICENSE).
 
+## 📚 Related Documentation
+
+### **Core Documentation**
+- **[START_HERE.md](docs/START_HERE.md)** - Begin here for navigation
+- **[Setup Guide](docs/SETUP_GUIDE.md)** - Complete setup instructions
+- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+
+### **Feature Documentation**
+- **[Frontend Features](docs/features/frontend/README.md)** - Complete frontend implementation
+- **[Authentication System](docs/features/frontend/authentication.md)** - Auth system details
+- **[Users List Integration](docs/features/frontend/users-list-integration.md)** - Users display functionality
+- **[API Documentation](docs/features/api/README.md)** - Backend API details
+- **[Docker Compose Configuration](docs/features/deployment/docker-compose-configuration.md)** - Enhanced dev/prod configurations
+
+### **Development Workflow**
+- **[Development Workflow](docs/DEVELOPMENT_WORKFLOW.md)** - Hot reload and automation guide
+- **[Quick Reference](docs/QUICK_REFERENCE.md)** - Common commands reference
+
 ## 🆘 Support
 
 If you encounter issues:

@@ -25,7 +25,7 @@ echo "✅ Docker Compose is available"
 # Clean up any existing setup
 echo "🧹 Cleaning up any existing setup..."
 rm -rf laravel next
-rm -f docker-compose.yml
+# Note: We don't remove docker-compose files as they contain enhanced configurations
 
 # Create project structure
 echo "📁 Creating project structure..."
@@ -317,92 +317,13 @@ EOF
 
 cd ..
 
-# Create Docker Compose file
-echo "🐳 Creating docker-compose.yml..."
-cat > docker-compose.yml << 'EOF'
-services:
-  db:
-    image: mysql:8.0
-    container_name: myapp-db
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    environment:
-      MYSQL_DATABASE: app
-      MYSQL_USER: app
-      MYSQL_PASSWORD: app
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./mysql/init:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-proot"]
-      interval: 5s
-      timeout: 3s
-      retries: 20
-    restart: unless-stopped
-
-  laravel:
-    build:
-      context: ./laravel
-    container_name: myapp-laravel
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./laravel:/var/www
-    environment:
-      DB_CONNECTION: mysql
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_DATABASE: app
-      DB_USERNAME: app
-      DB_PASSWORD: app
-      CORS_ALLOWED_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000"
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
-
-  next:
-    build:
-      context: ./next
-    container_name: myapp-next
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./next:/app
-      - /app/node_modules
-      - /app/.next
-    environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000
-      NEXT_PUBLIC_APP_NAME: "Laravel + Next.js App"
-    depends_on:
-      - laravel
-    restart: unless-stopped
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: myapp-phpmyadmin
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      PMA_USER: app
-      PMA_PASSWORD: app
-      MYSQL_ROOT_PASSWORD: root
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
-
-volumes:
-  db_data:
-
-networks:
-  default:
-    name: myapp_net
-EOF
+# Note: Docker Compose files are already configured in the project
+# - docker-compose.dev.yml for development with hot reload
+# - docker-compose.prod.yml for production deployment
+echo "🐳 Using existing enhanced Docker Compose configurations..."
+echo "   - Development: docker-compose.dev.yml (hot reload enabled)"
+echo "   - Production:  docker-compose.prod.yml (optimized builds)"
+echo "   - No need to create basic docker-compose.yml"
 
 # Create Laravel Dockerfile AFTER Laravel project is created
 echo "🐳 Creating Laravel Dockerfile..."
@@ -625,10 +546,10 @@ echo "🔧 Fixing Laravel 11 bootstrap configuration..."
 sed -i '' 's/->withRouting(/->withRouting(\n        api: __DIR__.\"\/..\/routes\/api.php\",/' laravel/bootstrap/app.php
 
 echo "🔨 Building Docker containers..."
-docker-compose build
+docker-compose -f docker-compose.dev.yml build
 
 echo "🚀 Starting services..."
-docker-compose up -d
+docker-compose -f docker-compose.dev.yml up -d
 
 echo "⏳ Waiting for MySQL to be ready..."
 sleep 30
